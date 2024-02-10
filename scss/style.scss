@@ -1,0 +1,277 @@
+// sass scss/style.scss style.css --watch
+
+
+@use 'variables';
+@use 'mixins';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: variables.$White;
+    font-family: variables.$Body;
+    color: variables.$Very-Dark-Cyan;
+}
+
+.main-container {
+    width: 375px;
+    margin: 0 auto;
+    @include mixins.desktop(1300px);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px auto 100px;
+    @include mixins.desktop(1200px);
+
+    &__logo {
+        width: 95px;
+        height: 16px;
+        @include mixins.desktop(240px, 38px);
+    }
+
+    &__button {
+        @include mixins.button(variables.$White, variables.$Light-Pink, variables.$Light-Pink, 80px, 24px, false);
+        @include mixins.desktop(134px, 42px);
+        @include mixins.button-hover(variables.$White, variables.$Light-Pink);
+    }
+   
+}
+
+.header {
+    &__title {
+        font-family: variables.$Heading;
+        text-align: center;
+        width: 265px;
+        margin: 0 auto 36px;
+        font-size: 1.48em;
+        @include mixins.desktop(1100px, unset, 2.98em);
+    }
+    
+    &__description {
+        text-align: center;
+        margin: 0 auto 48px;
+        font-weight: 600;
+        line-height: 1.5em;
+        font-size: 0.8em;
+        width: 290px;
+        @include mixins.desktop(590px, 80px, 1.25em);
+    }
+
+    &__button {
+        @include mixins.button(variables.$Pink, unset, variables.$Very-Pale-Blue, 200px, 40px, true);
+        border: none;
+        @include mixins.button-hover(variables.$White, variables.$Light-Pink);
+        @include mixins.desktop(400px, 80px, 1.25em);
+        margin-bottom: 200px;
+        box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    &__image {
+        width: 300px;
+        display: block;
+        margin: 0 auto 138px;
+        @include mixins.desktop(1020px, 725px, unset);
+    }
+}
+
+.section-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include mixins.stats;
+
+    .communities, .messages {
+        @include mixins.stats-desktop(50px);
+        margin-bottom: 98px;
+        &__logo {
+            width: 32px;
+        }
+        &__number {
+            font-size: 4em;
+        }
+        &__message {
+            font-size: 0.8em;
+            text-align: center;
+        }
+    }
+
+    .communities {
+        @include mixins.stats-desktop(50px);
+    }
+
+    .messages {
+        @include mixins.stats-desktop(42px);
+    }
+
+    @include mixins.banner('','../images/bg-section-top-mobile-1.svg');
+    @include mixins.banner-desktop('','../images/bg-section-top-desktop-1.svg');
+}
+
+.section-grow, .section-flow, .section-users {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include mixins.flex-sections;
+    padding: 150px 0;
+    .image-container img {
+        width: 246px;
+        margin-bottom: 78px;
+    }
+    .text-container {
+        text-align: center;
+        &__title {
+            font-family: variables.$Heading;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+        &__description {
+            font-size: 0.9em;
+            width: 330px;
+        }
+    }
+}
+
+.section-flow {
+    @include mixins.flex-sections(row-reverse);
+    @include mixins.banner('../images/bg-section-bottom-mobile-1.svg', '../images/bg-section-top-mobile-2.svg');
+    @include mixins.banner-desktop('../images/bg-section-bottom-desktop-1.svg', '../images/bg-section-top-desktop-2.svg');
+}
+
+.section-users, .section-grow {
+    @include mixins.flex-sections(row);
+    background-color: variables.$Very-Pale-Blue;
+}
+
+.ready {
+    @include mixins.banner('../images/bg-section-bottom-mobile-2.svg', '../images/bg-footer-top-mobile.svg');
+    @include mixins.banner-desktop('../images/bg-section-bottom-desktop-2.svg', '../images/bg-footer-top-desktop.svg');
+    height: 600px;
+    padding: 150px 0;
+    &__title {
+        @extend .header__title;
+    }
+    &__button {
+        @extend .header__button;
+    }
+
+}
+
+.newsletter {
+    background-color: variables.$Very-Dark-Cyan;
+    color: variables.$Very-Pale-Blue;
+    padding: 70px 24px 40px;
+
+    &__subscription {
+        margin-bottom: 100px;
+    }
+
+    &__title {
+        font-family: variables.$Heading;
+        text-transform: uppercase;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+    }
+    &__description {
+        font-size: 0.95em;
+        margin-bottom: 24px;
+    }
+    &__input {
+        border: none;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+    &__button-container {
+        display: flex;
+        justify-content: flex-end
+    }
+    &__button {
+        @extend .header__button;
+        width: 50%;
+        border-radius: 5px;
+        margin: 0;
+    }
+
+    @media (min-width: 1300px) {
+        &__subscription {
+            display: flex;
+            width: 580px;
+            height: 238px;
+        }
+        &__content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        &__title {
+            font-size: 1.5em;
+        }
+        &__description {
+            font-size: 1.1em;
+            margin-bottom: 42px;
+        }
+        &__input {
+            width: 90%;
+            margin-bottom: 0;
+        }
+        &__button-container {
+            align-items: flex-end; 
+        }
+        &__button {
+            width: 160px;
+            height: 40px;
+        }
+    }
+
+
+    &__social--logo {
+        width: 206px;
+        margin-bottom: 20px;
+    }
+    &__social--text {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+    }
+
+    &__social--icons {
+        display: flex;
+        gap: 20px;
+    }
+    &__social--icon {
+        width: 20px;
+        height: 16px;
+        margin-top: 3px;
+    }
+    &__social--text {
+        color: variables.$Very-Pale-Blue;
+        text-decoration: none;
+    }
+
+    &__social--redes {
+        margin-top: 20px;
+        display: flex;
+        gap: 15px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .newsletter {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        &__social--logo {
+            width: 250px;
+        }
+        &__social--text {
+            font-size: 1.1em;
+            width: 370px;
+        }
+
+    }
+}
